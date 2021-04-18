@@ -7,15 +7,39 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class Hotel {
-    public String hotelName;
-    public Integer hotelRating;
-    public HashMap<CustomerType, RateKey> rate;
+    String hotelName;
+    Integer hotelRating;
+    HashMap<CustomerType, RateKey> rate;
 
     public Hotel(){}
 
     public Hotel(String hotelName, Integer hotelRating, HashMap<CustomerType, RateKey> rate) {
         this.hotelName = hotelName;
         this.hotelRating = hotelRating;
+        this.rate = rate;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public Integer getHotelRating() {
+        return hotelRating;
+    }
+
+    public void setHotelRating(Integer hotelRating) {
+        this.hotelRating = hotelRating;
+    }
+
+    public HashMap<CustomerType, RateKey> getRate() {
+        return rate;
+    }
+
+    public void setRate(HashMap<CustomerType, RateKey> rate) {
         this.rate = rate;
     }
 

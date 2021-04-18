@@ -1,5 +1,7 @@
 package Bridgelabz;
 
+import javax.xml.transform.Result;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HotelReservationSystem {
@@ -22,5 +24,8 @@ public class HotelReservationSystem {
         }
         System.out.println("Hotel with name " + hotelNameToSearchFor + "is not available in our records.");
         return null;
+    }
+
+    public Result showCheapestThreeRateForADateRangeReturnCheapest(CustomerType regular, LocalDate ddMMMyyyy, LocalDate ddMMMyyyy1) {
     }
 }

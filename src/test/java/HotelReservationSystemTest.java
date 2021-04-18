@@ -16,6 +16,8 @@ public class HotelReservationSystemTest {
     Hotel lakewood;
     Hotel bridgewood;
     Hotel ridgewood;
+    Hotel creekwood;
+    Hotel valleywood;
 
     @Before
     public void setUp(){
@@ -38,6 +40,19 @@ public class HotelReservationSystemTest {
         runnerObject.addHotel(lakewood);
         runnerObject.addHotel(bridgewood);
         runnerObject.addHotel(ridgewood);
+
+        hotelRateVariable = new HashMap<>();
+        hotelRateVariable.put(CustomerType.REGULAR , new RateKey(30, 30));
+        hotelRateVariable.put(CustomerType.REWARD , new RateKey(25, 25));
+        creekwood = new Hotel("creekwood", 1, hotelRateVariable);
+
+        hotelRateVariable = new HashMap<>();
+        hotelRateVariable.put(CustomerType.REGULAR , new RateKey(30, 30));
+        hotelRateVariable.put(CustomerType.REWARD , new RateKey(25, 25));
+        valleywood = new Hotel("valleywood", 2, hotelRateVariable);
+
+        runnerObject.addHotel(creekwood);
+        runnerObject.addHotel(valleywood);
     }
 
     @Test
@@ -56,15 +71,16 @@ public class HotelReservationSystemTest {
         String startDate = "03Apr2021";
         String endDate = "04Apr2021";
 
-        Result cheapestRateRegular = runnerObject.showCheapestThreeRateForADateRangeReturnCheapest(CustomerType.REGULAR ,
+        Result cheapestRateRegular = runnerObject.showCheapestThreeRateForADateRangeReturnCheapest(CustomerType.REGULAR,
                 LocalDate.parse( startDate, DateTimeFormatter.ofPattern("ddMMMyyyy")),
                 LocalDate.parse( endDate, DateTimeFormatter.ofPattern("ddMMMyyyy")));
 
-        Result cheapestRateReward = runnerObject.showCheapestThreeRateForADateRangeReturnCheapest(CustomerType.REWARD ,
+        Result cheapestRateReward = runnerObject.showCheapestThreeRateForADateRangeReturnCheapest(CustomerType.REWARD,
                 LocalDate.parse(startDate, DateTimeFormatter.ofPattern("ddMMMyyyy")),
                 LocalDate.parse(endDate, DateTimeFormatter.ofPattern("ddMMMyyyy")));
 
-        Assertions.assertEquals(120 , (int) cheapestRateRegular.getTotalCalculatedRate());
-        Assertions.assertEquals(80 , (int) cheapestRateReward.getTotalCalculatedRate());
+        Assertions.assertEquals(60 , (int) cheapestRateRegular.getTotalCalculatedRate());
+        Assertions.assertEquals(2 , (int) cheapestRateRegular.getHotelRating());
+        Assertions.assertEquals("valleywood" , cheapestRateRegular.getHotelName());
     }
 }
