@@ -31,7 +31,7 @@ public class HotelReservationSystem {
     public Result getCheapestRateForADateRange(CustomerType customerType, LocalDate startDate , LocalDate endDate){
         ArrayList<Result> allHotelRateList= this.getAllRateForADateRange(customerType,startDate,endDate);
         ArrayList<Result> cheapest3HotelRateList= (ArrayList<Result>) allHotelRateList.stream()
-                .sorted(Comparator.comparingInt(Result::getTotalCalculatedRate))
+                .sorted(new ResultComparator())
                 .limit(3)
                 .collect(Collectors.toList());
         return cheapest3HotelRateList.get(0);
