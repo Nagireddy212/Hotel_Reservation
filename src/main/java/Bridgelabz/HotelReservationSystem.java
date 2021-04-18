@@ -3,6 +3,7 @@ package Bridgelabz;
 import javax.xml.transform.Result;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class HotelReservationSystem {
@@ -27,10 +28,19 @@ public class HotelReservationSystem {
         return null;
     }
 
-    public Result showCheapestThreeRateForADateRangeReturnCheapest(CustomerType customerType, LocalDate startDate , LocalDate endDate){
+    public Result getCheapestRateForADateRange(CustomerType customerType, LocalDate startDate , LocalDate endDate){
         ArrayList<Result> allHotelRateList= this.getAllRateForADateRange(customerType,startDate,endDate);
         ArrayList<Result> cheapest3HotelRateList= (ArrayList<Result>) allHotelRateList.stream()
-                .sorted(new ResultComparator())
+                .sorted(Comparator.comparingInt(Result::getTotalCalculatedRate))
+                .limit(3)
+                .collect(Collectors.toList());
+        return cheapest3HotelRateList.get(0);
+    }
+
+    public Result getBestRatedHotelForADateRange(CustomerType customerType, LocalDate startDate , LocalDate endDate){
+        ArrayList<Result> allHotelRateList= this.getAllRateForADateRange(customerType,startDate,endDate);
+        ArrayList<Result> cheapest3HotelRateList= (ArrayList<Result>) allHotelRateList.stream()
+                .sorted(Comparator.comparingInt(Result::getHotelRating).reversed())
                 .limit(3)
                 .collect(Collectors.toList());
         return cheapest3HotelRateList.get(0);

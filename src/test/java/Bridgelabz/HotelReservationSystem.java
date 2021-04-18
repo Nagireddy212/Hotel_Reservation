@@ -25,7 +25,4 @@ public class HotelReservationSystem {
         System.out.println("Hotel with name " + hotelNameToSearchFor + "is not available in our records.");
         return null;
     }
-
-    public Result showCheapestThreeRateForADateRangeReturnCheapest(CustomerType regular, LocalDate ddMMMyyyy, LocalDate ddMMMyyyy1) {
-    }
 }
