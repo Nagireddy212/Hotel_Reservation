@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class HotelReservationSystem {
     ArrayList<Hotel> hotelList;
 
+
     public HotelReservationSystem() {
         this.hotelList = new ArrayList<Hotel>();
     }
